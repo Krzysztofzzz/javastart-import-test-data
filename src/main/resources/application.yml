@@ -7,5 +7,6 @@ spring:
     password:
       password
   jpa:
-    show-sql: true
+    show-sql: true #pokazanie wykonywanych zapytan sql w konsoli
+    defer-datasource-initialization: true #opoznienie wykonania skryptu z pliku data.sql
 
