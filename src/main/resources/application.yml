@@ -1,12 +1,14 @@
 spring:
   datasource:
-    url:
-      jdbc:h2:mem:test
-    username:
-      username
-    password:
-      password
+    url: jdbc:mysql://localhost:3306/company?useSSL=false&serverTimezone=Europe/Warsaw
+    driver-class-name: com.mysql.cj.jdbc.Driver #zaleznosc do MySql
+    username: root
+    password: password
   jpa:
-    show-sql: true #pokazanie wykonywanych zapytan sql w konsoli
-    defer-datasource-initialization: true #opoznienie wykonania skryptu z pliku data.sql
-
+    show-sql: true #pokazuje zapytania sql w konsoli
+    hibernate:
+      ddl-auto: create-drop #bez tego, dziala tylko dla wbudowanych baz danych. dla zewnetrznych trzeba tego uzyc
+    defer-datasource-initialization: true  #wygenerowanie schematu bazy danych przez Hibernate, ale jednocześnie wykonanie skryptu z pliku data.sql w celu uzupełnienia tabel danymi testowymi
+  sql:
+    init:
+      mode: always #Dla baz niewbudowanych zawartość pliku schema.sql domyślnie nie jest wykonywana, dlatego należy w pliku application.yml dodać własność spring.sql.init.mode ustawioną na always.
